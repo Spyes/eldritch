@@ -15,7 +15,12 @@ const initialState = Map({
         Map({
           name: "Location",
           data: Map({
-            name: "Sydney"
+            name: "Sydney",
+            coords: Map({
+              x: 500,
+              y: 409,
+              r: 80
+            })
           })
         }),
         Map({
@@ -37,7 +42,12 @@ const initialState = Map({
         Map({
           name: "Location",
           data: Map({
-            name: "New York"
+            name: "New York",
+            coords: Map({
+              x: 187,
+              y: 266,
+              r: 80
+            })
           })
         }),
         Map({

@@ -6,15 +6,20 @@ import { action } from 'redux-saga/effects';
 /* COMPONENTS */
 import Stats from './components/Stats';
 
+import { getLocationStyle } from '../../common/style';
+
 const RenderEntity = (props) => {
-  const { stats, entity } = props;
+  const { stats, entity, location } = props;
+
   const onClick = (e) => {
-    props.dispatch({type: 'CLICKED_ENTITY', entity});
     props.onClick(entity, e);
   };
 
+  const locationStyle = getLocationStyle(location);
+  
   return (
-    <div onClick={onClick}>
+    <div onClick={ onClick }
+         style={ locationStyle }>
       <Stats {...props} />
     </div>
   );
@@ -26,7 +31,8 @@ RenderEntity.propTypes = {
 
 function mapStateToProps(state, props) {
   return {
-    stats: state.stats.get(props.entity, Map())
+    stats: state.stats.get(props.entity, Map()),
+    location: state.location.get(props.entity, Map())
   };
 }
 

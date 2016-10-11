@@ -5,13 +5,14 @@ import { Map } from 'immutable';
 import RenderEntity from '../RenderEntity';
 
 const onClickEntity = (entity, e) => {
-  console.log(`clicked entity ${entity}`);
+  console.log(`from Board -- clicked entity ${entity}`);
 }
 
 const Board = (props) => {
   const { entities } = props;
   return (
     <div>
+      <img src="images/eldritch_horror_map_huge.png" />
       { entities
         .keySeq()
         .map((entity, key) => (
