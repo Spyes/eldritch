@@ -4,7 +4,12 @@ import configureStore from '../configureStore';
 
 import Game from '../components/Game';
 
-const store = configureStore();
+import sagas from '../sagas';
+import createSagaMiddleware from 'redux-saga';
+
+const sagaMiddleware = createSagaMiddleware();
+const store = configureStore({}, sagaMiddleware);
+sagaMiddleware.run(sagas);
 
 export default class Root extends Component {
   constructor(props) {

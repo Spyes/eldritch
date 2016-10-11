@@ -1,41 +1,34 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-import { Map, List } from 'immutable';
+import React from 'react';
+import { Map } from 'immutable';
 
 /* COMPONENTS */
-import Entity from '../Entity';
+import RenderEntity from '../RenderEntity';
 
-const drawEntity = (entity, key) => {
-  return (
-    <Entity key={key} entity={entity} />
-  );
-};
+const onClickEntity = (entity, e) => {
+  console.log(`clicked entity ${entity}`);
+}
 
 const Board = (props) => {
+  const { entities } = props;
   return (
     <div>
-    {
-      props.board
-           .get('players', List())
-           .map(drawEntity)
-    }
+      { entities
+        .keySeq()
+        .map((entity, key) => (
+          <RenderEntity key={ key }
+                        entity={ entity }
+                        onClick={ onClickEntity } />
+        ))
+      }
     </div>
   );
 };
 
 Board.propTypes = {
-  board: React.PropTypes.object
+  entities: React.PropTypes.object
 };
-
 Board.defaultProps = {
-  board: Map()
+  entities: Map()
 };
 
-function mapStateToProps(state) {
-  return {
-    board: state.board
-  };
-}
-
-export default connect(mapStateToProps)(Board);
+export default Board;
